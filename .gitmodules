@@ -1,0 +1,3 @@
+[submodule "backend/plugins/dvadmin3-celery"]
+	path = backend/plugins/dvadmin3-celery
+	url = https://gitee.com/wskaudh/dvadmin3-celery.git
