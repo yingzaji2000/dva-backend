@@ -60,6 +60,12 @@ INSTALLED_APPS = [
     "captcha",
     "channels",
     "dvadmin.system",
+
+    'django_celery_beat',
+    'django_celery_results',
+    'dvadmin3_celery',
+
+    
 ]
 
 MIDDLEWARE = [
@@ -404,7 +410,7 @@ PLUGINS_URL_PATTERNS = []
 # ********** 一键导入插件配置开始 **********
 # 例如:
 # from dvadmin_upgrade_center.settings import *    # 升级中心
-# from dvadmin3_celery.settings import *            # celery 异步任务
+# from dvadmin_celery.settings import *            # celery 异步任务
 # from dvadmin_third.settings import *            # 第三方用户管理
 # from dvadmin_ak_sk.settings import *            # 秘钥管理管理
 # from dvadmin_tenants.settings import *            # 租户管理
@@ -412,3 +418,21 @@ PLUGINS_URL_PATTERNS = []
 #from dvadmin_uniapp.settings import *
 # ...
 # ********** 一键导入插件配置结束 **********
+
+CACHES = { # 配置缓存
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": f'{REDIS_URL}/1', # 库名可自选1~16
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+}
+# BROKER_URL = f'{REDIS_URL}/2' # 库名可自选1~16
+# CELERY_RESULT_BACKEND = 'django-db' # celery结果存储到数据库中
+# CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'  # Backend数据库
+
+
+CELERY_BROKER_URL = f'{REDIS_URL}/2' # 库名可自选1~16
+CELERY_RESULT_BACKEND  = 'django-db' # celery结果存储到数据库中
+CELERY_BEAT_SCHEDULER  = 'django_celery_beat.schedulers.DatabaseScheduler'  # Backend数据库

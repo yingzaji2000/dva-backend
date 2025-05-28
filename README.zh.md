@@ -135,16 +135,16 @@ yarn build
 	mysql数据库版本建议：8.0
 	mysql数据库字符集：utf8mb4
 4. 安装依赖环境
-	pip3 install -r requirements.txt
+	pip install -r requirements.txt
 5. 执行迁移命令：
-	python3 manage.py makemigrations
-	python3 manage.py migrate
+	python manage.py makemigrations
+	python manage.py migrate
 6. 初始化数据
-	python3 manage.py init
+	python manage.py init
 7. 初始化省市县数据:
-	python3 manage.py init_area
+	python manage.py init_area
 8. 启动项目
-	python3 manage.py runserver 0.0.0.0:8000
+	python manage.py runserver 0.0.0.0:8000
 或使用 uvicorn :
   uvicorn application.asgi:application --port 8000 --host 0.0.0.0 --workers 8
 ~~~
@@ -187,28 +187,6 @@ docker-compose up -d --build
 ~~~
 
 
-
-## 演示图✅
-
-![image-01](https://foruda.gitee.com/images/1701348994587355489/1bc749e7_5074988.png)
-
-![image-02](https://foruda.gitee.com/images/1701349037811908960/80d361db_5074988.png)
-
-![image-03](https://foruda.gitee.com/images/1701349224478845203/954f0a7b_5074988.png)
-
-![image-04](https://foruda.gitee.com/images/1701349248928658877/64926724_5074988.png)
-
-![image-05](https://foruda.gitee.com/images/1701349259068943299/1306ba40_5074988.png)
-
-![image-06](https://foruda.gitee.com/images/1701349294894429495/e3b3a8cf_5074988.png)
-
-![image-07](https://foruda.gitee.com/images/1701350432536247561/3b26685e_5074988.png)
-
-![image-08](https://foruda.gitee.com/images/1701350455264771992/b364c57f_5074988.png)
-
-![image-09](https://foruda.gitee.com/images/1701350479266000753/e4e4f7c5_5074988.png)
-
-![image-10](https://foruda.gitee.com/images/1701350501421625746/f8dd215e_5074988.png)
-
-
-
+###
+git config --global user.name "vinson"
+git config --global user.email "64455402@qq.com"

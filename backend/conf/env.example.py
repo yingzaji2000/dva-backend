@@ -15,13 +15,13 @@ DATABASE_ENGINE = "django.db.backends.mysql"
 DATABASE_NAME = 'django-vue3-admin' # mysql 时使用
 
 # 数据库地址 改为自己数据库地址
-DATABASE_HOST = '127.0.0.1'
+DATABASE_HOST = '172.16.157.101'
 # # 数据库端口
 DATABASE_PORT = 3306
 # # 数据库用户名
 DATABASE_USER = "root"
 # # 数据库密码
-DATABASE_PASSWORD = 'DVADMIN3'
+DATABASE_PASSWORD = 'lhit-123'
 
 # 表前缀
 TABLE_PREFIX = "dvadmin_"
@@ -30,8 +30,8 @@ TABLE_PREFIX = "dvadmin_"
 # ================================================= #
 REDIS_DB = 1
 CELERY_BROKER_DB = 3
-REDIS_PASSWORD = 'DVADMIN3'
-REDIS_HOST = '127.0.0.1'
+REDIS_PASSWORD = 'lhit@123'
+REDIS_HOST = '172.16.158.15'
 REDIS_URL = f'redis://:{REDIS_PASSWORD or ""}@{REDIS_HOST}:6379'
 # ================================================= #
 # ****************** 功能 启停  ******************* #

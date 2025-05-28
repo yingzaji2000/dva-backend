@@ -648,3 +648,70 @@ class DownloadCenter(CoreModel):
         verbose_name = "下载中心"
         verbose_name_plural = verbose_name
         ordering = ("-create_datetime",)
+
+
+
+class Sales(models.Model):
+    import_time = models.CharField(max_length=50, blank=True,verbose_name='导入时间')
+    business_code = models.CharField(max_length=50, null=True, blank=True, verbose_name='商业编码')
+    business_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='商业名称')
+    outbound_date = models.CharField(max_length=50, null=True, blank=True, verbose_name='出库日期')
+    downstream_receiver_code = models.CharField(max_length=50, null=True, blank=True, verbose_name='下游收货方编码')
+    downstream_receiver_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='下游收货方名称')
+    product_code = models.CharField(max_length=50, null=True, blank=True, verbose_name='产品编码')
+    product_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='产品名称')
+    product_specification = models.CharField(max_length=100, null=True, blank=True, verbose_name='产品规格')
+    product_batch_number = models.CharField(max_length=50, null=True, blank=True, verbose_name='产品批号')
+    quantity = models.CharField(max_length=20, null=True, blank=True, verbose_name='数量')
+    quantity_unit = models.CharField(max_length=50, null=True, blank=True, verbose_name='数量单位')
+    product_packaging = models.CharField(max_length=50, null=True, blank=True, verbose_name='产品包装')
+    manufacturer = models.CharField(max_length=255, null=True, blank=True, verbose_name='生产厂家')
+    remaining_expiry_days = models.CharField(max_length=50, null=True, blank=True, verbose_name='剩余效期')
+    expiry_date = models.CharField(max_length=50, null=True, blank=True, verbose_name='效期')
+    product_unit_price_tax_inclusive = models.CharField(max_length=50, null=True, blank=True, verbose_name='产品单价（含税）')
+    product_amount_tax_inclusive = models.CharField(max_length=50, null=True, blank=True, verbose_name='产品金额（含税）')
+    downstream_receiver_address = models.CharField(max_length=255, null=True, blank=True, verbose_name='下游收货方地址')
+    data_type = models.CharField(max_length=255, null=True, blank=True, verbose_name='数据类型')
+    sales_order_number = models.CharField(max_length=50, null=True, blank=True, verbose_name='销售单号')
+    warehouse_info = models.CharField(max_length=100, null=True, blank=True, verbose_name='仓库信息')
+    approval_number = models.CharField(max_length=50, null=True, blank=True, verbose_name='批准文号')
+    created_time = models.CharField(max_length=50, null=True, blank=True, verbose_name='创建时间')
+    abbreviation = models.CharField(max_length=50, null=True, blank=True, verbose_name='简称')
+    note = models.CharField(max_length=200, null=True, blank=True, verbose_name='备注')
+
+    # 清洗后商业，暂时4个
+    cleaned_business_code = models.CharField(max_length=50, null=True, blank=True, verbose_name='商业编码（清洗后）')
+    cleaned_business_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='商业名称（清洗后）')
+    cleaned_downstream_receiver_code = models.CharField(max_length=50, null=True, blank=True, verbose_name='下游收货方编码（清洗后）')
+    cleaned_downstream_receiver_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='下游收货方名称（清洗后）')
+    orgi_product_batch_number = models.CharField(max_length=50, null=True, blank=True, verbose_name='产品批号（清洗前）')
+    cleaned_manufacturer = models.CharField(max_length=255, null=True, blank=True, verbose_name='生产厂家（清洗后）')
+
+    # ----清洗后品种,暂时3个，不够补充
+    cleaned_product_code = models.CharField(max_length=50, null=True, blank=True, verbose_name='产品编码（清洗后）')
+    cleaned_product_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='产品名称（清洗后）')
+    cleaned_specification = models.CharField(max_length=100, null=True, blank=True, verbose_name='产品规格（清洗后）')
+
+    cleaned_unit = models.CharField(max_length=50, null=True, blank=True, verbose_name='标准数量单位')
+    cleaned_quantity = models.CharField(max_length=20, null=True, blank=True, verbose_name='标准数量')
+
+    min_unit = models.CharField(max_length=50, null=True, blank=True, verbose_name='最小数量单位')
+    min_quantity = models.CharField(max_length=20, null=True, blank=True, verbose_name='最小数量')
+#记录清洗状态，清洗时间，cleaned_status=1，清洗商业；cleaned_status=2，清洗上下游3，清洗不成功0
+    cleaned_status = models.CharField(max_length=10, null=True, blank=True, verbose_name='清洗状态')
+    cleaned_result = models.CharField(max_length=10, null=True, blank=True, verbose_name='清洗结果')
+    last_cleaned_time = models.DateTimeField(verbose_name='上次清洗时间', null=True, blank=True)
+    failure=models.CharField(max_length=10, null=True, blank=True, verbose_name='失败原因')
+    province = models.CharField(max_length=255, null=True, blank=True, verbose_name='所属省份')
+    city = models.CharField(max_length=255, null=True, blank=True, verbose_name='所属城市')
+    downstream_province = models.CharField(max_length=255, null=True, blank=True, verbose_name='客户所属省份')
+    downstream_city = models.CharField(max_length=255, null=True, blank=True, verbose_name='客户所属城市')
+    comm_filing_type = models.CharField(max_length=50, null=True, blank=True, verbose_name='档案类型')
+    flag=models.CharField(max_length=1, null=True, blank=True, verbose_name='手工导入标记')
+    
+    class Meta:
+        verbose_name_plural = '销售数据'
+        db_table = 'sales'
+    def __str__(self):
+        return f'{self.business_code} - {self.product_code} - {self.outbound_date}'
+    
